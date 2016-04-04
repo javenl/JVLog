@@ -11,6 +11,6 @@
 
 @interface JVConsoleLogger : NSObject <JVLoggerProtocol>
 
-+ (void)log:(NSString *)log level:(JVLogLevel)level file:(NSString *)file function:(NSString *)function line:(NSString *)line identifier:(NSString *)identifer;
+//- (void)log:(NSString *)log level:(JVLogLevel)level file:(NSString *)file function:(NSString *)function line:(NSString *)line identifier:(NSString *)identifer;
 
 @end

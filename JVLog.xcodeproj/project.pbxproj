@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A0141F41CB2A0F10086B0AC /* JVLogFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0141F31CB2A0F10086B0AC /* JVLogFilter.m */; };
 		5AC0742A1CB01B3900BA6ED5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AC074291CB01B3900BA6ED5 /* main.m */; };
 		5AC0742D1CB01B3900BA6ED5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AC0742C1CB01B3900BA6ED5 /* AppDelegate.m */; };
 		5AC074301CB01B3900BA6ED5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AC0742F1CB01B3900BA6ED5 /* ViewController.m */; };
@@ -14,7 +15,7 @@
 		5AC074351CB01B3900BA6ED5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5AC074341CB01B3900BA6ED5 /* Assets.xcassets */; };
 		5AC074381CB01B3900BA6ED5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5AC074361CB01B3900BA6ED5 /* LaunchScreen.storyboard */; };
 		5AC074431CB01B3900BA6ED5 /* JVLogTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AC074421CB01B3900BA6ED5 /* JVLogTests.m */; };
-		5AC0744F1CB01B4C00BA6ED5 /* JVLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AC0744E1CB01B4C00BA6ED5 /* JVLog.m */; };
+		5AC0744F1CB01B4C00BA6ED5 /* JVLogManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AC0744E1CB01B4C00BA6ED5 /* JVLogManager.m */; };
 		5AC074521CB0495E00BA6ED5 /* JVFileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AC074511CB0495E00BA6ED5 /* JVFileLogger.m */; };
 		5AC074551CB0496B00BA6ED5 /* JVConsoleLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AC074541CB0496B00BA6ED5 /* JVConsoleLogger.m */; };
 /* End PBXBuildFile section */
@@ -30,6 +31,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5A0141F21CB2A0F10086B0AC /* JVLogFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVLogFilter.h; sourceTree = "<group>"; };
+		5A0141F31CB2A0F10086B0AC /* JVLogFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVLogFilter.m; sourceTree = "<group>"; };
 		5A42387D1CB0E57B005561E6 /* JVLoggerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVLoggerProtocol.h; sourceTree = "<group>"; };
 		5A42387F1CB0E8CA005561E6 /* JVLogMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVLogMacros.h; sourceTree = "<group>"; };
 		5AC074251CB01B3900BA6ED5 /* JVLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JVLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -45,8 +48,8 @@
 		5AC0743E1CB01B3900BA6ED5 /* JVLogTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JVLogTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AC074421CB01B3900BA6ED5 /* JVLogTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JVLogTests.m; sourceTree = "<group>"; };
 		5AC074441CB01B3900BA6ED5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5AC0744D1CB01B4C00BA6ED5 /* JVLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVLog.h; sourceTree = "<group>"; };
-		5AC0744E1CB01B4C00BA6ED5 /* JVLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVLog.m; sourceTree = "<group>"; };
+		5AC0744D1CB01B4C00BA6ED5 /* JVLogManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVLogManager.h; sourceTree = "<group>"; };
+		5AC0744E1CB01B4C00BA6ED5 /* JVLogManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVLogManager.m; sourceTree = "<group>"; };
 		5AC074501CB0495E00BA6ED5 /* JVFileLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVFileLogger.h; sourceTree = "<group>"; };
 		5AC074511CB0495E00BA6ED5 /* JVFileLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVFileLogger.m; sourceTree = "<group>"; };
 		5AC074531CB0496B00BA6ED5 /* JVConsoleLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVConsoleLogger.h; sourceTree = "<group>"; };
@@ -101,8 +104,10 @@
 				5AC074361CB01B3900BA6ED5 /* LaunchScreen.storyboard */,
 				5AC074391CB01B3900BA6ED5 /* Info.plist */,
 				5A42387F1CB0E8CA005561E6 /* JVLogMacros.h */,
-				5AC0744D1CB01B4C00BA6ED5 /* JVLog.h */,
-				5AC0744E1CB01B4C00BA6ED5 /* JVLog.m */,
+				5AC0744D1CB01B4C00BA6ED5 /* JVLogManager.h */,
+				5AC0744E1CB01B4C00BA6ED5 /* JVLogManager.m */,
+				5A0141F21CB2A0F10086B0AC /* JVLogFilter.h */,
+				5A0141F31CB2A0F10086B0AC /* JVLogFilter.m */,
 				5AC074501CB0495E00BA6ED5 /* JVFileLogger.h */,
 				5AC074511CB0495E00BA6ED5 /* JVFileLogger.m */,
 				5AC074531CB0496B00BA6ED5 /* JVConsoleLogger.h */,
@@ -231,7 +236,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5AC074521CB0495E00BA6ED5 /* JVFileLogger.m in Sources */,
-				5AC0744F1CB01B4C00BA6ED5 /* JVLog.m in Sources */,
+				5A0141F41CB2A0F10086B0AC /* JVLogFilter.m in Sources */,
+				5AC0744F1CB01B4C00BA6ED5 /* JVLogManager.m in Sources */,
 				5AC074301CB01B3900BA6ED5 /* ViewController.m in Sources */,
 				5AC074551CB0496B00BA6ED5 /* JVConsoleLogger.m in Sources */,
 				5AC0742D1CB01B3900BA6ED5 /* AppDelegate.m in Sources */,

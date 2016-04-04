@@ -7,9 +7,10 @@
 //
 
 #import "ViewController.h"
-#import "JVLog.h"
+#import "JVLogManager.h"
 #import "JVFileLogger.h"
 #import "JVConsoleLogger.h"
+#import "JVLogMacros.h"
 
 @interface ViewController ()
 
@@ -32,8 +33,10 @@
     
     JVFileLogger *fileLoggeer = [[JVFileLogger alloc] init];
     JVConsoleLogger *consoleLogger = [[JVConsoleLogger alloc] init];
-    [JVLog registerLogger:fileLoggeer];
-    [JVLog registerLogger:consoleLogger];
+    [JVLogManager registerLogger:fileLoggeer];
+    [JVLogManager registerLogger:consoleLogger];
+    
+//    [JVLog add]
     
 }
 
@@ -44,8 +47,14 @@
 //    DLog(@"1 + 1 = %@", @(1+1));
 //    JVLOG(@"1 + 1 = %@", @(1+1));
 //    [JVLog log:[[NSString stringWithFormat:@"[filename:%s] [function:%s] [line:%d]", __FILE__, __FUNCTION__, __LINE__] stringByAppendingFormat:@"%@", @(10)]];
-    
-    [JVLog log:@"hello"];
+//    [JVLog log:@"hello"];
+//    [JVLog log:<#(NSString *)#> level:<#(JVLogLevel)#> file:<#(NSString *)#> class:<#(__unsafe_unretained Class)#> function:<#(NSString *)#> line:<#(NSInteger)#> identifier:<#(NSString *)#>]
+    JVLogE(@"javenTest" , @"hello %@", @(1));
+    JVLogW(@"javenTest" , @"hello %@", @(2));
+    JVLogI(@"javenTest" , @"hello %@", @(3));
+    JVLogD(@"javenTest" , @"hello %@", @(4));
+    JVLogV(@"javenTest" , @"hello %@", @(5));
+//
     
 }
 

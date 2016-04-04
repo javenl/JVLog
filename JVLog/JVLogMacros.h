@@ -9,7 +9,22 @@
 #ifndef JVLogMacros_h
 #define JVLogMacros_h
 
-#define JVLOG(format, ...) [JVLog log:[[NSString stringWithFormat:(@"[filename:%s]" "[function:%s]" "[line:%d]"), __FILE__, __FUNCTION__, __LINE__] stringByAppendingFormat:format, ##__VA_ARGS__]]
+//#define JVLOG(format, ...) [JVLog log:[[NSString stringWithFormat:(@"[filename:%s]" "[function:%s]" "[line:%d]"), __FILE__, __FUNCTION__, __LINE__] stringByAppendingFormat:]]
+
+
+//#define JVLog(str, format, ...) JVLogD(str, format, ...)
+
+#define JVLogE(str, format, ...) [JVLogManager log:[NSString stringWithFormat:format, ##__VA_ARGS__] level:JVLogLevelError file:[NSString stringWithFormat:@"%s", __FILE__] class:[self class] function:[NSString stringWithFormat:@"%s", __FUNCTION__] line:__LINE__ identifier:str]
+
+#define JVLogW(str, format, ...) [JVLogManager log:[NSString stringWithFormat:format, ##__VA_ARGS__] level:JVLogLevelWarning file:[NSString stringWithFormat:@"%s", __FILE__] class:[self class] function:[NSString stringWithFormat:@"%s", __FUNCTION__] line:__LINE__ identifier:str]
+//
+#define JVLogI(str, format, ...) [JVLogManager log:[NSString stringWithFormat:format, ##__VA_ARGS__] level:JVLogLevelInfo file:[NSString stringWithFormat:@"%s", __FILE__] class:[self class] function:[NSString stringWithFormat:@"%s", __FUNCTION__] line:__LINE__ identifier:str]
+
+#define JVLogD(str, format, ...) [JVLogManager log:[NSString stringWithFormat:format, ##__VA_ARGS__] level:JVLogLevelDebug file:[NSString stringWithFormat:@"%s", __FILE__] class:[self class] function:[NSString stringWithFormat:@"%s", __FUNCTION__] line:__LINE__ identifier:str]
+
+#define JVLogV(str, format, ...) [JVLogManager log:[NSString stringWithFormat:format, ##__VA_ARGS__] level:JVLogLevelVerbose file:[NSString stringWithFormat:@"%s", __FILE__] class:[self class] function:[NSString stringWithFormat:@"%s", __FUNCTION__] line:__LINE__ identifier:str]
+
+
 
 //#define JVLOG(format, ...) [JVLog log:[NSString stringWithFormat:format, ##__VA_ARGS__]]
 
@@ -19,6 +34,16 @@ typedef NS_ENUM(NSInteger, JVLogLevel) {
     JVLogLevelInfo = 3,
     JVLogLevelDebug = 4,
     JVLogLevelVerbose = 5,
+};
+
+typedef NS_ENUM(NSInteger, JVLogExtraInfo) {
+    JVLogExtraInfoLevel = 1 << 1,
+    JVLogExtraInfoFile = 1 << 2,
+    JVLogExtraInfoClass = 1 << 3,
+    JVLogExtraInfoFunction = 1 << 4,
+    JVLogExtraInfoLine = 1 << 5,
+    JVLogExtraInfoIdentifier = 1 << 6,
+    JVLogExtraInfoDefault = JVLogExtraInfoLevel | JVLogExtraInfoFunction | JVLogExtraInfoLine | JVLogExtraInfoIdentifier,
 };
 
 
