@@ -57,6 +57,7 @@
 		5AC074511CB0495E00BA6ED5 /* JVFileLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVFileLogger.m; sourceTree = "<group>"; };
 		5AC074531CB0496B00BA6ED5 /* JVConsoleLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVConsoleLogger.h; sourceTree = "<group>"; };
 		5AC074541CB0496B00BA6ED5 /* JVConsoleLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVConsoleLogger.m; sourceTree = "<group>"; };
+		5AD7FD981CB429B2003FAADE /* JVLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JVLog.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +107,7 @@
 				5AC074341CB01B3900BA6ED5 /* Assets.xcassets */,
 				5AC074361CB01B3900BA6ED5 /* LaunchScreen.storyboard */,
 				5AC074391CB01B3900BA6ED5 /* Info.plist */,
+				5AD7FD981CB429B2003FAADE /* JVLog.h */,
 				5A42387F1CB0E8CA005561E6 /* JVLogMacros.h */,
 				5AC0744D1CB01B4C00BA6ED5 /* JVLogManager.h */,
 				5AC0744E1CB01B4C00BA6ED5 /* JVLogManager.m */,

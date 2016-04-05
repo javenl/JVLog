@@ -139,7 +139,9 @@
         extraString = [extraString stringByAppendingFormat:@"[line:%@]", @(line)];
     }
     if (extraInfo & JVLogExtraInfoIdentifier) {
-        extraString = [extraString stringByAppendingFormat:@"[identifier:%@]", identifer];
+        if (identifer.length > 0) {
+            extraString = [extraString stringByAppendingFormat:@"[identifier:%@]", identifer];
+        }
     }
     return extraString;
 }

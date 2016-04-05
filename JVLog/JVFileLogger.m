@@ -39,7 +39,7 @@
             NSAssert(isSuccess == YES, @"create log path fail");
         }
         
-        NSLog(@"loggerPath %@", loggerPath);
+//        NSLog(@"loggerPath %@", loggerPath);
         self.filehandle = [NSFileHandle fileHandleForWritingAtPath:loggerPath];
         NSAssert(self.filehandle != nil, @"open file fail");
         

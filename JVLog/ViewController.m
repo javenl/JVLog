@@ -7,10 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "JVLogManager.h"
-#import "JVFileLogger.h"
-#import "JVConsoleLogger.h"
-#import "JVLogMacros.h"
+#import "JVLog.h"
 
 @interface ViewController ()
 
@@ -64,8 +61,8 @@
 //    [filter removeExceptLine:63];
 //    [filter removeExceptIdentifier:@"javenTest2"];
     
-    
-    JVFileLogger *fileLoggeer = [[JVFileLogger alloc] init];
+    NSString *path = @"/Users/liu/Desktop/JVLog.log";
+    JVFileLogger *fileLoggeer = [[JVFileLogger alloc] initWithLoggerPath:path];
     fileLoggeer.logLevel = JVLogLevelVerbose;
     fileLoggeer.filter = filter;
     
@@ -80,31 +77,33 @@
 }
 
 - (void)didTapTest {
-    JVLogE(@"javenTest1" , @"hello %@", @(1));
-    JVLogW(@"javenTest1" , @"hello %@", @(2));
-    JVLogI(@"javenTest1" , @"hello %@", @(3));
-    JVLogD(@"javenTest1" , @"hello %@", @(4));
-    JVLogV(@"javenTest1" , @"hello %@", @(5));
+    JVLog(@"%@", @"hello");
     
-    JVLogE(@"javenTest2" , @"hello %@", @(1));
-    JVLogW(@"javenTest2" , @"hello %@", @(2));
-    JVLogI(@"javenTest2" , @"hello %@", @(3));
-    JVLogD(@"javenTest2" , @"hello %@", @(4));
-    JVLogV(@"javenTest2" , @"hello %@", @(5));
+    JVLogEId(@"javenTest1", @"hello %@", @(1));
+    JVLogWId(@"javenTest1", @"hello %@", @(2));
+    JVLogIId(@"javenTest1", @"hello %@", @(3));
+    JVLogDId(@"javenTest1", @"hello %@", @(4));
+    JVLogVId(@"javenTest1", @"hello %@", @(5));
+    
+    JVLogE(@"hello %@", @(1));
+    JVLogW(@"hello %@", @(2));
+    JVLogI(@"hello %@", @(3));
+    JVLogD(@"hello %@", @(4));
+    JVLogV(@"hello %@", @(5));
 }
 
 - (void)didTapTest2 {
-    JVLogE(@"javenTest3" , @"hello %@", @(1));
-    JVLogW(@"javenTest3" , @"hello %@", @(2));
-    JVLogI(@"javenTest3" , @"hello %@", @(3));
-    JVLogD(@"javenTest3" , @"hello %@", @(4));
-    JVLogV(@"javenTest3" , @"hello %@", @(5));
-    
-    JVLogE(@"javenTest4" , @"hello %@", @(1));
-    JVLogW(@"javenTest4" , @"hello %@", @(2));
-    JVLogI(@"javenTest4" , @"hello %@", @(3));
-    JVLogD(@"javenTest4" , @"hello %@", @(4));
-    JVLogV(@"javenTest4" , @"hello %@", @(5));
+//    JVLogE(@"javenTest3" , @"hello %@", @(1));
+//    JVLogW(@"javenTest3" , @"hello %@", @(2));
+//    JVLogI(@"javenTest3" , @"hello %@", @(3));
+//    JVLogD(@"javenTest3" , @"hello %@", @(4));
+//    JVLogV(@"javenTest3" , @"hello %@", @(5));
+//    
+//    JVLogE(@"javenTest4" , @"hello %@", @(1));
+//    JVLogW(@"javenTest4" , @"hello %@", @(2));
+//    JVLogI(@"javenTest4" , @"hello %@", @(3));
+//    JVLogD(@"javenTest4" , @"hello %@", @(4));
+//    JVLogV(@"javenTest4" , @"hello %@", @(5));
 }
 
 
