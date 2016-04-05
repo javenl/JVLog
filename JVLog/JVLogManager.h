@@ -10,10 +10,6 @@
 #import "JVLogMacros.h"
 #import "JVLoggerProtocol.h"
 
-//#define LOG(fmt) [JVLog log:[NSString stringWithFormat:@"%s(%d): %@", fmt, __PRETTY_FUNCTION__, __LINE__,]]
-
-//#define DLog(format, ...) NSLog(format, ##__VA_ARGS__)
-
 
 @interface JVLogManager : NSObject
 
@@ -21,7 +17,7 @@
 
 + (void)setupLogLevel:(JVLogLevel)level;
 
-+ (JVLogLevel)logLevel;
++ (JVLogLevel)currentLogLevel;
 
 /// Register
 
@@ -59,11 +55,6 @@
 
 /// Log
 
-+ (void)log:(NSString *)log;
-
-//+ (void)log:(NSString *)log level:(JVLogLevel)level file:(NSString *)file function:(NSString *)function line:(NSString *)line identifier:(NSString *)identifer;
 + (void)log:(NSString *)log level:(JVLogLevel)level file:(NSString *)file class:(Class)cls function:(NSString *)function line:(NSInteger)line identifier:(NSString *)identifer;
-
-+ (NSString *)levelStringFromLevel:(JVLogLevel)level;
 
 @end

@@ -37,13 +37,15 @@ typedef NS_ENUM(NSInteger, JVLogLevel) {
 };
 
 typedef NS_ENUM(NSInteger, JVLogExtraInfo) {
+    JVLogExtraInfoTime = 1 << 0,
     JVLogExtraInfoLevel = 1 << 1,
     JVLogExtraInfoFile = 1 << 2,
     JVLogExtraInfoClass = 1 << 3,
     JVLogExtraInfoFunction = 1 << 4,
     JVLogExtraInfoLine = 1 << 5,
     JVLogExtraInfoIdentifier = 1 << 6,
-    JVLogExtraInfoDefault = JVLogExtraInfoLevel | JVLogExtraInfoFunction | JVLogExtraInfoLine | JVLogExtraInfoIdentifier,
+    JVLogExtraInfoDefault = JVLogExtraInfoTime | JVLogExtraInfoLevel | JVLogExtraInfoFunction | JVLogExtraInfoIdentifier,
+    JVLogExtraInfoFull = JVLogExtraInfoTime | JVLogExtraInfoLevel | JVLogExtraInfoFile | JVLogExtraInfoClass | JVLogExtraInfoFunction | JVLogExtraInfoLine | JVLogExtraInfoIdentifier,
 };
 
 

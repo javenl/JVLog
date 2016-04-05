@@ -49,8 +49,8 @@
 }
 
 - (void)log:(NSString *)log level:(JVLogLevel)level file:(NSString *)file function:(NSString *)function line:(NSString *)line identifier:(NSString *)identifer {
-    NSString *str = [NSString stringWithFormat:@"%@\n", log];
-    [self.filehandle writeData:[str dataUsingEncoding:NSUTF8StringEncoding]];
+//    NSString *str = [NSString stringWithFormat:@"%@\n", log];
+    [self.filehandle writeData:[log dataUsingEncoding:NSUTF8StringEncoding]];
 }
 
 @end
