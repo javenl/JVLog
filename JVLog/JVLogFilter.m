@@ -10,6 +10,18 @@
 
 @interface JVLogFilter ()
 
+@property (strong, nonatomic) NSMutableArray *functionFilters;
+@property (strong, nonatomic) NSMutableArray *classFilters;
+@property (strong, nonatomic) NSMutableArray *fileFilters;
+@property (strong, nonatomic) NSMutableArray *lineFilters;
+@property (strong, nonatomic) NSMutableArray *identifierFilters;
+
+@property (strong, nonatomic) NSMutableArray *functionExcepts;
+@property (strong, nonatomic) NSMutableArray *classExcepts;
+@property (strong, nonatomic) NSMutableArray *fileExcepts;
+@property (strong, nonatomic) NSMutableArray *lineExcepts;
+@property (strong, nonatomic) NSMutableArray *identifierExcepts;
+
 @end
 
 @implementation JVLogFilter
@@ -31,6 +43,173 @@
     }
     return self;
 }
+
+#pragma mark - Filter
+
+- (void)addFilterFiles:(NSArray *)files {
+    [self.fileFilters addObjectsFromArray:files];
+}
+
+- (void)addFilterClasses:(NSArray *)clses {
+    [self.classFilters addObjectsFromArray:clses];
+}
+
+- (void)addFilterFunctions:(NSArray *)functions {
+    [self.functionFilters addObjectsFromArray:functions];
+}
+
+- (void)addFilterLines:(NSArray *)lines {
+    [self.lineFilters addObjectsFromArray:lines];
+}
+
+- (void)addFilterIdentifiers:(NSArray *)identifiers {
+    [self.identifierFilters addObjectsFromArray:identifiers];
+}
+
+- (void)removeFilterFile:(NSString *)file {
+    NSMutableArray *fileFilters = self.fileFilters;
+    NSMutableIndexSet *indexSets = [NSMutableIndexSet indexSet];
+    for (int i = 0; i < fileFilters.count; i++) {
+        NSString *f = fileFilters[i];
+        if ([f isEqualToString:file]) {
+            [indexSets addIndex:i];
+        }
+    }
+    [fileFilters removeObjectsAtIndexes:indexSets];
+}
+
+- (void)removeFilterClass:(Class)cls {
+    NSMutableArray *clsFilters = self.classFilters;
+    NSString *clsName = NSStringFromClass(cls);
+    NSMutableIndexSet *indexSets = [NSMutableIndexSet indexSet];
+    for (int i = 0; i < clsFilters.count; i++) {
+        Class c = clsFilters[i];
+        if ([NSStringFromClass(c) isEqualToString:clsName]) {
+            [indexSets addIndex:i];
+        }
+    }
+    [clsFilters removeObjectsAtIndexes:indexSets];
+}
+
+- (void)removeFilterFunction:(NSString *)function {
+    NSMutableArray *functionFilters = self.functionFilters;
+    NSMutableIndexSet *indexSets = [NSMutableIndexSet indexSet];
+    for (int i = 0; i < functionFilters.count; i++) {
+        NSString *f = functionFilters[i];
+        if ([f isEqualToString:function]) {
+            [indexSets addIndex:i];
+        }
+    }
+    [functionFilters removeObjectsAtIndexes:indexSets];
+}
+
+- (void)removeFilterLine:(NSInteger)line {
+    NSMutableArray *lineFilters = self.lineFilters;
+    NSMutableIndexSet *indexSets = [NSMutableIndexSet indexSet];
+    for (int i = 0; i < lineFilters.count; i++) {
+        NSNumber *l = lineFilters[i];
+        if (l.integerValue == line) {
+            [indexSets addIndex:i];
+        }
+    }
+    [lineFilters removeObjectsAtIndexes:indexSets];
+}
+
+- (void)removeFilterIdentifier:(NSString *)identifier {
+    NSMutableArray *identifierFilters = self.identifierFilters;
+    NSMutableIndexSet *indexSets = [NSMutableIndexSet indexSet];
+    for (int i = 0; i < identifierFilters.count; i++) {
+        NSString *f = identifierFilters[i];
+        if ([f isEqualToString:identifier]) {
+            [indexSets addIndex:i];
+        }
+    }
+    [identifierFilters removeObjectsAtIndexes:indexSets];
+}
+
+#pragma mark - Except
+
+- (void)addExceptFiles:(NSArray *)files {
+    [self.fileExcepts addObjectsFromArray:files];
+}
+
+- (void)addExceptClasses:(NSArray *)clses {
+    [self.classExcepts addObjectsFromArray:clses];
+}
+
+- (void)addExceptFunctions:(NSArray *)functions {
+    [self.functionExcepts addObjectsFromArray:functions];
+}
+
+- (void)addExceptLines:(NSArray *)line {
+    [self.lineExcepts addObjectsFromArray:line];
+}
+
+- (void)addExceptIdentifiers:(NSArray *)identifiers {
+    [self.identifierExcepts addObjectsFromArray:identifiers];
+}
+
+- (void)removeExceptFile:(NSString *)file {
+    NSMutableArray *fileExcepts = self.fileExcepts;
+    NSMutableIndexSet *indexSets = [NSMutableIndexSet indexSet];
+    for (int i = 0; i < fileExcepts.count; i++) {
+        NSString *f = fileExcepts[i];
+        if ([f isEqualToString:file]) {
+            [indexSets addIndex:i];
+        }
+    }
+    [fileExcepts removeObjectsAtIndexes:indexSets];
+}
+
+- (void)removeExceptClass:(Class)cls {
+    NSMutableArray *classExcepts = self.classExcepts;
+    NSString *clsName = NSStringFromClass(cls);
+    NSMutableIndexSet *indexSets = [NSMutableIndexSet indexSet];
+    for (int i = 0; i < classExcepts.count; i++) {
+        Class c = classExcepts[i];
+        if ([NSStringFromClass(c) isEqualToString:clsName]) {
+            [indexSets addIndex:i];
+        }
+    }
+    [classExcepts removeObjectsAtIndexes:indexSets];
+}
+
+- (void)removeExceptFunction:(NSString *)function {
+    NSMutableArray *functionExcepts = self.functionExcepts;
+    NSMutableIndexSet *indexSets = [NSMutableIndexSet indexSet];
+    for (int i = 0; i < functionExcepts.count; i++) {
+        NSString *f = functionExcepts[i];
+        if ([f isEqualToString:function]) {
+            [indexSets addIndex:i];
+        }
+    }
+    [functionExcepts removeObjectsAtIndexes:indexSets];
+}
+
+- (void)removeExceptLine:(NSInteger)line {
+    NSMutableArray *lineFilters = self.lineExcepts;
+    NSMutableIndexSet *indexSets = [NSMutableIndexSet indexSet];
+    for (int i = 0; i < lineFilters.count; i++) {
+        NSNumber *l = lineFilters[i];
+        if (l.integerValue == line) {
+            [indexSets addIndex:i];
+        }
+    }
+    [lineFilters removeObjectsAtIndexes:indexSets];
+}
+
+- (void)removeExceptIdentifier:(NSString *)identifier {
+    NSMutableArray *identifierExcepts = self.identifierExcepts;
+    NSMutableIndexSet *indexSets = [NSMutableIndexSet indexSet];
+    for (int i = 0; i < identifierExcepts.count; i++) {
+        NSString *f = identifierExcepts[i];
+        if ([f isEqualToString:identifier]) {
+            [indexSets addIndex:i];
+        }
+    }
+    [identifierExcepts removeObjectsAtIndexes:indexSets];
+}
+
 
 #pragma mark - Filter
 

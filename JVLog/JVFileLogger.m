@@ -48,8 +48,9 @@
     return self;
 }
 
-- (void)log:(NSString *)log level:(JVLogLevel)level file:(NSString *)file function:(NSString *)function line:(NSString *)line identifier:(NSString *)identifer {
-//    NSString *str = [NSString stringWithFormat:@"%@\n", log];
+#pragma mark - JVLoggerProtocol
+
+- (void)outputLog:(NSString *)log {
     [self.filehandle writeData:[log dataUsingEncoding:NSUTF8StringEncoding]];
 }
 

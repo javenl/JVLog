@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "JVLoggerProtocol.h"
+#import "JVBaseLogger.h"
 
-@interface JVFileLogger : NSObject <JVLoggerProtocol>
+@interface JVFileLogger : JVBaseLogger <JVLoggerProtocol>
 
 - (id)initWithLoggerPath:(NSString *)loggerPath;
 

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5A0141F41CB2A0F10086B0AC /* JVLogFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0141F31CB2A0F10086B0AC /* JVLogFilter.m */; };
+		5A26CCE81CB3AA7F0011D124 /* JVBaseLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A26CCE71CB3AA7F0011D124 /* JVBaseLogger.m */; };
 		5AC0742A1CB01B3900BA6ED5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AC074291CB01B3900BA6ED5 /* main.m */; };
 		5AC0742D1CB01B3900BA6ED5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AC0742C1CB01B3900BA6ED5 /* AppDelegate.m */; };
 		5AC074301CB01B3900BA6ED5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AC0742F1CB01B3900BA6ED5 /* ViewController.m */; };
@@ -33,6 +34,8 @@
 /* Begin PBXFileReference section */
 		5A0141F21CB2A0F10086B0AC /* JVLogFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVLogFilter.h; sourceTree = "<group>"; };
 		5A0141F31CB2A0F10086B0AC /* JVLogFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVLogFilter.m; sourceTree = "<group>"; };
+		5A26CCE61CB3AA7F0011D124 /* JVBaseLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVBaseLogger.h; sourceTree = "<group>"; };
+		5A26CCE71CB3AA7F0011D124 /* JVBaseLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVBaseLogger.m; sourceTree = "<group>"; };
 		5A42387D1CB0E57B005561E6 /* JVLoggerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVLoggerProtocol.h; sourceTree = "<group>"; };
 		5A42387F1CB0E8CA005561E6 /* JVLogMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVLogMacros.h; sourceTree = "<group>"; };
 		5AC074251CB01B3900BA6ED5 /* JVLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JVLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -108,6 +111,8 @@
 				5AC0744E1CB01B4C00BA6ED5 /* JVLogManager.m */,
 				5A0141F21CB2A0F10086B0AC /* JVLogFilter.h */,
 				5A0141F31CB2A0F10086B0AC /* JVLogFilter.m */,
+				5A26CCE61CB3AA7F0011D124 /* JVBaseLogger.h */,
+				5A26CCE71CB3AA7F0011D124 /* JVBaseLogger.m */,
 				5AC074501CB0495E00BA6ED5 /* JVFileLogger.h */,
 				5AC074511CB0495E00BA6ED5 /* JVFileLogger.m */,
 				5AC074531CB0496B00BA6ED5 /* JVConsoleLogger.h */,
@@ -239,6 +244,7 @@
 				5A0141F41CB2A0F10086B0AC /* JVLogFilter.m in Sources */,
 				5AC0744F1CB01B4C00BA6ED5 /* JVLogManager.m in Sources */,
 				5AC074301CB01B3900BA6ED5 /* ViewController.m in Sources */,
+				5A26CCE81CB3AA7F0011D124 /* JVBaseLogger.m in Sources */,
 				5AC074551CB0496B00BA6ED5 /* JVConsoleLogger.m in Sources */,
 				5AC0742D1CB01B3900BA6ED5 /* AppDelegate.m in Sources */,
 				5AC0742A1CB01B3900BA6ED5 /* main.m in Sources */,

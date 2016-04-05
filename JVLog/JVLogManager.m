@@ -8,12 +8,13 @@
 
 #import "JVLogManager.h"
 #import "JVLogFilter.h"
+#import "JVBaseLogger.h"
 
 @interface JVLogManager ()
 
 @property (strong, nonatomic) NSMutableArray *loggers;
-@property (assign, nonatomic) JVLogLevel logLevel;
-@property (strong, nonatomic) JVLogFilter *filter;
+//@property (assign, nonatomic) JVLogLevel logLevel;
+//@property (strong, nonatomic) JVLogFilter *filter;
 @property (strong, nonatomic) NSDateFormatter *dateFormatter;
 
 @end
@@ -36,30 +37,30 @@
     return _dateFormatter;
 }
 
-- (JVLogFilter *)filter {
-    if (!_filter) {
-        _filter = [[JVLogFilter alloc] init];
-    }
-    return _filter;
-}
+//- (JVLogFilter *)filter {
+//    if (!_filter) {
+//        _filter = [[JVLogFilter alloc] init];
+//    }
+//    return _filter;
+//}
 
 + (JVLogManager *)instance {
     static JVLogManager *log = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         log = [[JVLogManager alloc] init];
-        log.logLevel = JVLogLevelDebug;
+//        log.logLevel = JVLogLevelDebug;
     });
     return log;
 }
 
-+ (void)setupLogLevel:(JVLogLevel)level {
-    [self instance].logLevel = level;
-}
-
-+ (JVLogLevel)currentLogLevel {
-    return [self instance].logLevel;
-}
+//+ (void)setupLogLevel:(JVLogLevel)level {
+//    [self instance].logLevel = level;
+//}
+//
+//+ (JVLogLevel)currentLogLevel {
+//    return [self instance].logLevel;
+//}
 
 + (void)registerLogger:(id<JVLoggerProtocol>)logger {
 //    NSMutableArray *loggers = [[self instance] loggers];
@@ -75,96 +76,8 @@
     [[self instance].loggers removeObject:logger];
 }
 
-#pragma mark - Filter
-
-+ (void)addFilterFiles:(NSArray *)files {
-    [[self instance].filter.fileFilters addObjectsFromArray:files];
-}
-
-+ (void)addFilterClasses:(NSArray *)clses {
-    [[self instance].filter.classFilters addObjectsFromArray:clses];
-}
-
-+ (void)addFilterFunctions:(NSArray *)functions {
-    [[self instance].filter.functionFilters addObjectsFromArray:functions];
-}
-
-+ (void)addFilterLines:(NSArray *)lines {
-    [[self instance].filter.lineFilters addObjectsFromArray:lines];
-}
-
-+ (void)addFilterIdentifiers:(NSArray *)identifiers {
-    [[self instance].filter.identifierFilters addObjectsFromArray:identifiers];
-}
-
-+ (void)removeFilterFile:(NSString *)file {
-    NSMutableArray *fileFilters = [self instance].filter.fileFilters;
-    NSMutableIndexSet *indexSets = [NSMutableIndexSet indexSet];
-    for (int i = 0; i < fileFilters.count; i++) {
-        NSString *f = fileFilters[i];
-        if ([f isEqualToString:file]) {
-            [indexSets addIndex:i];
-        }
-    }
-    [fileFilters removeObjectsAtIndexes:indexSets];
-}
-
-+ (void)removeFilterClass:(Class)cls {
-    
-}
-
-+ (void)removeFilterFunction:(NSString *)function {
-    
-}
-
-+ (void)removeFilterLine:(NSInteger)line {
-    
-}
-
-+ (void)removeFilterIdentifier:(NSString *)identifier {
-    
-}
-
-#pragma mark - Except
-
-+ (void)addExceptFiles:(NSArray *)files {
-    [[self instance].filter.fileExcepts addObjectsFromArray:files];
-}
-
-+ (void)addExceptClasses:(NSArray *)clses {
-    [[self instance].filter.classExcepts addObjectsFromArray:clses];
-}
-
-+ (void)addExceptFunctions:(NSArray *)functions {
-    [[self instance].filter.functionExcepts addObjectsFromArray:functions];
-}
-
-+ (void)addExceptLines:(NSArray *)line {
-    [[self instance].filter.lineExcepts addObjectsFromArray:line];
-}
-
-+ (void)addExceptIdentifiers:(NSArray *)identifiers {
-    [[self instance].filter.identifierExcepts addObjectsFromArray:identifiers];
-}
-
-+ (void)removeExceptFile:(NSString *)file {
-    
-}
-
-+ (void)removeExceptClass:(Class)cls {
-    
-}
-
-+ (void)removeExceptFunction:(NSString *)function {
-    
-}
-
-+ (void)removeExceptLine:(NSInteger)line {
-    
-}
-
-+ (void)removeExceptIdentifier:(NSString *)identifier {
-    
++ (NSArray *)currentLoggers {
+    return [self instance].loggers;
 }
 
 #pragma mark - Log
@@ -185,46 +98,56 @@
 */
 + (void)log:(NSString *)log level:(JVLogLevel)level file:(NSString *)file class:(Class)cls function:(NSString *)function line:(NSInteger)line identifier:(NSString *)identifer
 {
-    for (id<JVLoggerProtocol>l in [self instance].loggers) {
-        if (level > [self logLevel]) {
+    for (JVBaseLogger<JVLoggerProtocol> *l in [self instance].loggers) {
+        if (level > l.logLevel) {
             continue;
         }
         
         BOOL isExcept = NO;
         NSString *filename = [file lastPathComponent];
-        if ([[self instance].filter isExceptForFile:filename]) {
+        if ([l.filter isExceptForFile:filename]) {
             isExcept = YES;
-        } else if ([[self instance].filter isExceptForClass:cls]) {
+        } else if ([l.filter isExceptForClass:cls]) {
             isExcept = YES;
-        } else if ([[self instance].filter isExceptForFunction:function]) {
+        } else if ([l.filter isExceptForFunction:function]) {
             isExcept = YES;
-        } else if ([[self instance].filter isExceptForLine:line]) {
+        } else if ([l.filter isExceptForLine:line]) {
             isExcept = YES;
-        } else if ([[self instance].filter isExceptForIdentifier:identifer]) {
+        } else if ([l.filter isExceptForIdentifier:identifer]) {
             isExcept = YES;
         }
         
         if (isExcept) { // if is except, log immediately
-            NSString *extraString = [self extraStringWithExtraInfo:JVLogExtraInfoDefault level:level file:filename class:cls function:function line:line identifier:identifer];
-            NSString *logString = [NSString stringWithFormat:@"%@  %@\n", extraString, log];
-            [l log:logString level:level file:file function:function line:log identifier:identifer];
+            NSString *extraString = [self extraStringWithExtraInfo:l.logExtraInfo level:level file:filename class:cls function:function line:line identifier:identifer];
+            NSString *logString = nil;
+            if (extraString) {
+                logString = [NSString stringWithFormat:@"%@  %@\n", extraString, log];
+            } else {
+                logString = [NSString stringWithFormat:@"%@\n", log];;
+            }
+            [l outputLog:logString];
         } else {
-            if ([[self instance].filter isFilterForFile:filename]) {
+            if ([l.filter isFilterForFile:filename]) {
                 continue;
-            } else if ([[self instance].filter isFilterForClass:cls]) {
+            } else if ([l.filter isFilterForClass:cls]) {
                 continue;
-            } else if ([[self instance].filter isFilterForFunction:function]) {
+            } else if ([l.filter isFilterForFunction:function]) {
                 continue;
-            } else if ([[self instance].filter isFilterForLine:line]) {
+            } else if ([l.filter isFilterForLine:line]) {
                 continue;
-            } else if ([[self instance].filter isFilterForIdentifier:identifer]) {
+            } else if ([l.filter isFilterForIdentifier:identifer]) {
                 continue;
             }
             // no filter, log immediately
 //            [l log:log level:level file:file function:function line:log identifier:identifer];
-            NSString *extraString = [self extraStringWithExtraInfo:JVLogExtraInfoFull level:level file:filename class:cls function:function line:line identifier:identifer];
-            NSString *logString = [NSString stringWithFormat:@"%@  %@\n", extraString, log];
-            [l log:logString level:0 file:nil function:nil line:nil identifier:nil];
+            NSString *extraString = [self extraStringWithExtraInfo:l.logExtraInfo level:level file:filename class:cls function:function line:line identifier:identifer];
+            NSString *logString = nil;
+            if (extraString) {
+                logString = [NSString stringWithFormat:@"%@  %@\n", extraString, log];
+            } else {
+                logString = [NSString stringWithFormat:@"%@\n", log];;
+            }
+            [l outputLog:logString];
         }
     }
 }
@@ -232,6 +155,9 @@
 + (NSString *)extraStringWithExtraInfo:(JVLogExtraInfo)extraInfo level:(JVLogLevel)level file:(NSString *)file class:(Class)cls function:(NSString *)function line:(NSInteger)line identifier:(NSString *)identifer
 {
     NSString *extraString = @"";
+    if (extraInfo == JVLogExtraInfoNone) {
+        return nil;
+    }
     if (extraInfo & JVLogExtraInfoTime) {
         NSString *timeString = [[self instance].dateFormatter stringFromDate:[NSDate date]];
         extraString = [extraString stringByAppendingFormat:@"[%@]", timeString];

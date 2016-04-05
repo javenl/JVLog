@@ -38,23 +38,44 @@
     [self.btn2 addTarget:self action:@selector(didTapTest2) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.btn2];
     
+    JVLogFilter *filter = [[JVLogFilter alloc] init];
+    
+    [filter addFilterFiles:@[@"ViewController.m"]];
+    [filter addFilterClasses:@[[ViewController class]]];
+    [filter addFilterFunctions:@[@"-[ViewController didTapTest]"]];
+    [filter addFilterLines:@[@(75)]];
+    [filter addFilterIdentifiers:@[@"javenTest3"]];
+
+    [filter addExceptFiles:@[@"ViewController"]];
+    [filter addExceptClasses:@[[ViewController class]]];
+    [filter addExceptFunctions:@[@"-[ViewController didTapTest]"]];
+    [filter addExceptLines:@[@(63)]];
+    [filter addExceptIdentifiers:@[@"javenTest2"]];
+    
+//    [filter removeFilterFile:@"ViewController.m"];
+//    [filter removeFilterClass:[ViewController class]];
+//    [filter removeFilterFunction:@"-[ViewController didTapTest]"];
+//    [filter removeFilterLine:75];
+//    [filter removeFilterIdentifier:@"javenTest3"];
+    
+//    [filter removeExceptFile:@"ViewController"];
+//    [filter removeExceptClass:[ViewController class]];
+//    [filter removeExceptFunction:@"-[ViewController didTapTest]"];
+//    [filter removeExceptLine:63];
+//    [filter removeExceptIdentifier:@"javenTest2"];
+    
+    
     JVFileLogger *fileLoggeer = [[JVFileLogger alloc] init];
+    fileLoggeer.logLevel = JVLogLevelVerbose;
+    fileLoggeer.filter = filter;
+    
     JVConsoleLogger *consoleLogger = [[JVConsoleLogger alloc] init];
+    consoleLogger.logLevel = JVLogLevelVerbose;
+//    consoleLogger.logExtraInfo = JVLogExtraInfoNone;
+    consoleLogger.filter = filter;
+    
     [JVLogManager registerLogger:fileLoggeer];
     [JVLogManager registerLogger:consoleLogger];
-    [JVLogManager setupLogLevel:JVLogLevelVerbose];
-    
-//    [JVLogManager addFilterFunctions:@[@"-[ViewController didTapTest]"]];
-//    [JVLogManager addFilterLines:@[@(68)]];
-//    [JVLogManager addFilterIdentifiers:@[@"javenTest3"]];
-//    [JVLogManager addFilterFiles:@[@"ViewController.m"]];
-//    [JVLogManager addFilterClasses:@[[ViewController class]]];
-    
-//    [JVLogManager addExceptFiles:@[@"ViewController"]];
-//    [JVLogManager addExceptClasses:@[[ViewController class]]];
-//    [JVLogManager addExceptLines:@[@(63)]];
-//    [JVLogManager addExceptFunctions:@[@"-[ViewController didTapTest]"]];
-//    [JVLogManager addExceptIdentifiers:@[@"javenTest2"]];
     
 }
 

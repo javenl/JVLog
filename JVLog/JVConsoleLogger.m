@@ -24,9 +24,10 @@
     return self;
 }
 
-- (void)log:(NSString *)log level:(JVLogLevel)level file:(NSString *)file function:(NSString *)function line:(NSString *)line identifier:(NSString *)identifer {
+#pragma mark - JVLoggerProtocol
+
+- (void)outputLog:(NSString *)log {
 //    NSLog(@"i**%@ %@", @(i) , log);
-    
     dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER);
     printf("%s", [log UTF8String]);
     dispatch_semaphore_signal(self.semaphore);
