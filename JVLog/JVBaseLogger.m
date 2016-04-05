@@ -11,8 +11,6 @@
 
 @interface JVBaseLogger ()
 
-//@property (strong, nonatomic) JVLogFilter *filter;
-
 @end
 
 @implementation JVBaseLogger
@@ -25,15 +23,5 @@
     }
     return self;
 }
-/*
-#pragma mark - Properties
 
-- (void)setupFilter:(JVLogFilter *)filter {
-    self.filter = filter;
-}
-
-- (void)removeFilter {
-    self.filter = nil;
-}
-*/
 @end

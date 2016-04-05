@@ -13,8 +13,6 @@
 @interface JVLogManager ()
 
 @property (strong, nonatomic) NSMutableArray *loggers;
-//@property (assign, nonatomic) JVLogLevel logLevel;
-//@property (strong, nonatomic) JVLogFilter *filter;
 @property (strong, nonatomic) NSDateFormatter *dateFormatter;
 
 @end
@@ -37,38 +35,16 @@
     return _dateFormatter;
 }
 
-//- (JVLogFilter *)filter {
-//    if (!_filter) {
-//        _filter = [[JVLogFilter alloc] init];
-//    }
-//    return _filter;
-//}
-
 + (JVLogManager *)instance {
     static JVLogManager *log = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         log = [[JVLogManager alloc] init];
-//        log.logLevel = JVLogLevelDebug;
     });
     return log;
 }
 
-//+ (void)setupLogLevel:(JVLogLevel)level {
-//    [self instance].logLevel = level;
-//}
-//
-//+ (JVLogLevel)currentLogLevel {
-//    return [self instance].logLevel;
-//}
-
 + (void)registerLogger:(id<JVLoggerProtocol>)logger {
-//    NSMutableArray *loggers = [[self instance] loggers];
-//    for (id<JVLoggerProtocol> l in loggers) {
-//        if ([l isKindOfClass:[logger]]) {
-//
-//        }
-//    }
     [[self instance].loggers addObject:logger];
 }
 
@@ -81,21 +57,7 @@
 }
 
 #pragma mark - Log
-/*
-+ (void)log:(NSString *)log {
-    [self log:log level:JVLogLevelDebug file:nil class:nil function:nil line:0 identifier:nil];
-//    va_list args;
-//    va_start(args, log);
-////    [[self sharedInstance] log:fileName method:(NSString*)method lineNr:lineNr text:format, args];
-////    NSLog(log, args);
-//    vprintf(log.UTF8String, args);
-//    va_end(args);
-//    NSLog(@"%@", log);
-    
-//    NSLog(@"line:%@ function:%s %@", @(__LINE__), __FUNCTION__, log);
-//    [NSString stringWithFormat:@"line number %d function %s", __LINE__, __FUNCTION__]
-}
-*/
+
 + (void)log:(NSString *)log level:(JVLogLevel)level file:(NSString *)file class:(Class)cls function:(NSString *)function line:(NSInteger)line identifier:(NSString *)identifer
 {
     for (JVBaseLogger<JVLoggerProtocol> *l in [self instance].loggers) {
@@ -139,7 +101,6 @@
                 continue;
             }
             // no filter, log immediately
-//            [l log:log level:level file:file function:function line:log identifier:identifer];
             NSString *extraString = [self extraStringWithExtraInfo:l.logExtraInfo level:level file:filename class:cls function:function line:line identifier:identifer];
             NSString *logString = nil;
             if (extraString) {
@@ -172,7 +133,6 @@
         extraString = [extraString stringByAppendingFormat:@"[%@ class]", NSStringFromClass(cls)];
     }
     if (extraInfo & JVLogExtraInfoFunction) {
-//        extraString = [extraString stringByAppendingFormat:@"[function:%@]", function];
         extraString = [extraString stringByAppendingFormat:@"(%@)", function];
     }
     if (extraInfo & JVLogExtraInfoLine) {

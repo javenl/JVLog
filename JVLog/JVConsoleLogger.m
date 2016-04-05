@@ -27,7 +27,6 @@
 #pragma mark - JVLoggerProtocol
 
 - (void)outputLog:(NSString *)log {
-//    NSLog(@"i**%@ %@", @(i) , log);
     dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER);
     printf("%s", [log UTF8String]);
     dispatch_semaphore_signal(self.semaphore);
