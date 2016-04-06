@@ -37,6 +37,10 @@
             
             BOOL isSuccess = [[NSFileManager defaultManager] createFileAtPath:loggerPath contents:nil attributes:nil];
             NSAssert(isSuccess == YES, @"create log path fail");
+            if (!isSuccess) {
+                NSException *e = [NSException exceptionWithName:@"FileCreateException" reason:@"create log path fail" userInfo:nil];
+                @throw e;
+            }
         }
         
 //        NSLog(@"loggerPath %@", loggerPath);
