@@ -13,6 +13,6 @@ Pod::Spec.new do |s|
   s.author       = { "javen" => "412775083@qq.com" }
   s.platform     = :ios, "6.0"
   s.source       = { :git => "https://github.com/javenl/JVLog.git", :tag => "#{s.version}" }
-  s.source_files = "Classes", "Classes/**/*.{h,m}"
+  s.source_files = "Classes", "Classes/*.{h,m}"
 
 end
