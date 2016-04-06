@@ -34,6 +34,7 @@
 #define JVLogV(format, ...) [JVLogManager log:[NSString stringWithFormat:format, ##__VA_ARGS__] level:JVLogLevelVerbose file:[NSString stringWithFormat:@"%s", __FILE__] class:[self class] function:[NSString stringWithFormat:@"%s", __FUNCTION__] line:__LINE__ identifier:nil]
 
 typedef NS_ENUM(NSInteger, JVLogLevel) {
+    JVLogLevelNone = 0,
     JVLogLevelError = 1,
     JVLogLevelWarning = 2,
     JVLogLevelInfo = 3,

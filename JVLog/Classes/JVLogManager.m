@@ -61,10 +61,7 @@
 + (void)log:(NSString *)log level:(JVLogLevel)level file:(NSString *)file class:(Class)cls function:(NSString *)function line:(NSInteger)line identifier:(NSString *)identifer
 {
     for (JVBaseLogger<JVLoggerProtocol> *l in [self instance].loggers) {
-        if (level > l.logLevel) {
-            continue;
-        }
-        
+
         BOOL isExcept = NO;
         NSString *filename = [file lastPathComponent];
         if ([l.filter isExceptForFile:filename]) {
@@ -89,6 +86,11 @@
             }
             [l outputLog:logString];
         } else {
+            
+            if (level > l.logLevel) {
+                continue;
+            }
+            
             if ([l.filter isFilterForFile:filename]) {
                 continue;
             } else if ([l.filter isFilterForClass:cls]) {
