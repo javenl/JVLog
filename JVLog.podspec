@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "JVLog"
-  s.version      = "0.1.1"
+  s.version      = "0.1.2"
   s.summary      = "An lightweight, flexible framework for logging to replace NSLog."
   s.description  = <<-DESC
   				An lightweight, flexible framework for logging to replace NSLog. 
