@@ -19,6 +19,8 @@
 		5AD7FDA91CB42AFA003FAADE /* JVFileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD7FD9F1CB42AFA003FAADE /* JVFileLogger.m */; };
 		5AD7FDAA1CB42AFA003FAADE /* JVLogFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD7FDA21CB42AFA003FAADE /* JVLogFilter.m */; };
 		5AD7FDAB1CB42AFA003FAADE /* JVLogManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD7FDA61CB42AFA003FAADE /* JVLogManager.m */; };
+		5AE26EDE1CC27F6F002D2E6A /* JVTextViewLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE26EDD1CC27F6F002D2E6A /* JVTextViewLogger.m */; };
+		5AE26EE11CC2812A002D2E6A /* JVShakeLogWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AE26EE01CC2812A002D2E6A /* JVShakeLogWindow.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +60,10 @@
 		5AD7FDA41CB42AFA003FAADE /* JVLogMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVLogMacros.h; sourceTree = "<group>"; };
 		5AD7FDA51CB42AFA003FAADE /* JVLogManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVLogManager.h; sourceTree = "<group>"; };
 		5AD7FDA61CB42AFA003FAADE /* JVLogManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVLogManager.m; sourceTree = "<group>"; };
+		5AE26EDC1CC27F6F002D2E6A /* JVTextViewLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVTextViewLogger.h; sourceTree = "<group>"; };
+		5AE26EDD1CC27F6F002D2E6A /* JVTextViewLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVTextViewLogger.m; sourceTree = "<group>"; };
+		5AE26EDF1CC2812A002D2E6A /* JVShakeLogWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVShakeLogWindow.h; sourceTree = "<group>"; };
+		5AE26EE01CC2812A002D2E6A /* JVShakeLogWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVShakeLogWindow.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +152,10 @@
 				5AD7FDA41CB42AFA003FAADE /* JVLogMacros.h */,
 				5AD7FDA51CB42AFA003FAADE /* JVLogManager.h */,
 				5AD7FDA61CB42AFA003FAADE /* JVLogManager.m */,
+				5AE26EDC1CC27F6F002D2E6A /* JVTextViewLogger.h */,
+				5AE26EDD1CC27F6F002D2E6A /* JVTextViewLogger.m */,
+				5AE26EDF1CC2812A002D2E6A /* JVShakeLogWindow.h */,
+				5AE26EE01CC2812A002D2E6A /* JVShakeLogWindow.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -253,7 +263,9 @@
 				5AD7FDA71CB42AFA003FAADE /* JVBaseLogger.m in Sources */,
 				5AD7FDAA1CB42AFA003FAADE /* JVLogFilter.m in Sources */,
 				5AD7FDA91CB42AFA003FAADE /* JVFileLogger.m in Sources */,
+				5AE26EDE1CC27F6F002D2E6A /* JVTextViewLogger.m in Sources */,
 				5AC074301CB01B3900BA6ED5 /* ViewController.m in Sources */,
+				5AE26EE11CC2812A002D2E6A /* JVShakeLogWindow.m in Sources */,
 				5AC0742D1CB01B3900BA6ED5 /* AppDelegate.m in Sources */,
 				5AC0742A1CB01B3900BA6ED5 /* main.m in Sources */,
 				5AD7FDAB1CB42AFA003FAADE /* JVLogManager.m in Sources */,
@@ -335,7 +347,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -372,7 +384,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

@@ -8,8 +8,12 @@
 
 #import "ViewController.h"
 #import "JVLog.h"
+#import "JVShakeLogWindow.h"
+#import "JVTextViewLogger.h"
 
 @interface ViewController ()
+
+@property (nonatomic, strong) JVShakeLogWindow *logView;
 
 @property (nonatomic, strong) UIButton *btn;
 @property (nonatomic, strong) UIButton *btn2;
@@ -61,19 +65,30 @@
 //    [filter removeExceptLine:63];
 //    [filter removeExceptIdentifier:@"javenTest2"];
     
-    NSString *path = @"/Users/liu/Desktop/JVLog.log";
-    JVFileLogger *fileLoggeer = [[JVFileLogger alloc] initWithLoggerPath:path];
-    fileLoggeer.logLevel = JVLogLevelVerbose;
-    fileLoggeer.filter = filter;
+//    NSString *path = @"/Users/liu/Desktop/JVLog.log";
+//    JVFileLogger *fileLoggeer = [[JVFileLogger alloc] initWithLoggerPath:path];
+//    fileLoggeer.logLevel = JVLogLevelVerbose;
+//    fileLoggeer.filter = filter;
+//    [JVLogManager registerLogger:fileLoggeer];
     
     JVConsoleLogger *consoleLogger = [[JVConsoleLogger alloc] init];
     consoleLogger.logLevel = JVLogLevelVerbose;
 //    consoleLogger.logExtraInfo = JVLogExtraInfoNone;
     consoleLogger.filter = filter;
-    
-    [JVLogManager registerLogger:fileLoggeer];
     [JVLogManager registerLogger:consoleLogger];
     
+    JVShakeLogWindow *logView = [JVShakeLogWindow sharedWindow];
+    JVTextViewLogger *textViewLogger = [[JVTextViewLogger alloc] initWithTextView:logView.textView];
+    textViewLogger.filter = filter;
+    [JVLogManager registerLogger:textViewLogger];
+    
+//    self.logView = [[JVShakeLogView alloc] init];
+//    self.logView.frame = [[UIApplication sharedApplication].windows firstObject].bounds;
+//    NSLog(@"windows %@ frame %@", [[UIApplication sharedApplication].windows firstObject], NSStringFromCGRect(self.logView.frame));
+//    self.logView.backgroundColor = [UIColor redColor];
+//    [self.logView makeKeyAndVisible];
+//    NSTimer *testTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(didTapTest) userInfo:nil repeats:YES];
+//    [[NSRunLoop mainRunLoop] addTimer:testTimer forMode:NSRunLoopCommonModes];
 }
 
 - (void)didTapTest {
@@ -90,9 +105,16 @@
     JVLogI(@"hello %@", @(3));
     JVLogD(@"hello %@", @(4));
     JVLogV(@"hello %@", @(5));
+    
+//    [self.logView.view removeFromSuperview];
 }
 
 - (void)didTapTest2 {
+    [self.logView makeKeyAndVisible];
+//    [self.view insertSubview:self.logView.view atIndex:0];
+//    self.logView.hidden = NO;
+    
+//    [self.logView removeFromSuperview];
 //    JVLogE(@"javenTest3" , @"hello %@", @(1));
 //    JVLogW(@"javenTest3" , @"hello %@", @(2));
 //    JVLogI(@"javenTest3" , @"hello %@", @(3));
@@ -105,7 +127,12 @@
 //    JVLogD(@"javenTest4" , @"hello %@", @(4));
 //    JVLogV(@"javenTest4" , @"hello %@", @(5));
 }
-
-
+/*
+- (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event {
+    [super motionBegan:motion withEvent:event];
+//        [self makeKeyAndVisible];
+    JVLog(@"shake");
+}
+*/
 
 @end
