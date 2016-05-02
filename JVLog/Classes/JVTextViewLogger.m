@@ -10,7 +10,6 @@
 
 @interface JVTextViewLogger ()
 
-
 @property (assign, nonatomic) UITextView *textView;
 
 @end
@@ -28,7 +27,13 @@
 #pragma mark - JVLoggerProtocol
 
 - (void)outputLog:(NSString *)log {
-    self.textView.text = [self.textView.text stringByAppendingString:log];
+    if ([NSThread currentThread] == [NSThread mainThread]) {
+        self.textView.text = [self.textView.text stringByAppendingString:log];
+    } else {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.textView.text = [self.textView.text stringByAppendingString:log];
+        });
+    }
 }
 
 @end

@@ -8,12 +8,13 @@
 
 #import "ViewController.h"
 #import "JVLog.h"
-#import "JVShakeLogWindow.h"
+#import "JVLogWindow.h"
 #import "JVTextViewLogger.h"
+#import "JVLogControlWindow.h"
 
 @interface ViewController ()
 
-@property (nonatomic, strong) JVShakeLogWindow *logView;
+@property (nonatomic, strong) JVLogWindow *logView;
 
 @property (nonatomic, strong) UIButton *btn;
 @property (nonatomic, strong) UIButton *btn2;
@@ -72,15 +73,17 @@
 //    [JVLogManager registerLogger:fileLoggeer];
     
     JVConsoleLogger *consoleLogger = [[JVConsoleLogger alloc] init];
-    consoleLogger.logLevel = JVLogLevelVerbose;
+    consoleLogger.showLogLevel = JVLogLevelVerbose;
 //    consoleLogger.logExtraInfo = JVLogExtraInfoNone;
     consoleLogger.filter = filter;
     [JVLogManager registerLogger:consoleLogger];
     
-    JVShakeLogWindow *logView = [JVShakeLogWindow sharedWindow];
-    JVTextViewLogger *textViewLogger = [[JVTextViewLogger alloc] initWithTextView:logView.textView];
+    JVTextViewLogger *textViewLogger = [[JVTextViewLogger alloc] initWithTextView:[JVLogWindow sharedWindow].textView];
     textViewLogger.filter = filter;
     [JVLogManager registerLogger:textViewLogger];
+    
+    [[JVLogShakeListener sharedListener] shakeToShowLogWindow];
+    [[JVLogControlWindow sharedWindow] ansyncShow];
     
 //    self.logView = [[JVShakeLogView alloc] init];
 //    self.logView.frame = [[UIApplication sharedApplication].windows firstObject].bounds;
@@ -92,6 +95,9 @@
 }
 
 - (void)didTapTest {
+//    JVLogControlWindow *win = [JVLogControlWindow sharedWindow];
+//    [win show];
+    
     JVLog(@"%@", @"hello");
     
     JVLogEId(@"javenTest1", @"hello %@", @(1));
@@ -109,8 +115,17 @@
 //    [self.logView.view removeFromSuperview];
 }
 
+- (void)test {
+//    NSLog(@"function %s petty function %s", __FUNCTION__, __PRETTY_FUNCTION__);
+    
+}
+
 - (void)didTapTest2 {
-    [self.logView makeKeyAndVisible];
+//    [self.logView makeKeyAndVisible];
+    
+    NSLog(@"function %s petty function %s", __FUNCTION__, __PRETTY_FUNCTION__);
+    
+//    [ViewController test];
 //    [self.view insertSubview:self.logView.view atIndex:0];
 //    self.logView.hidden = NO;
     

@@ -26,20 +26,14 @@
     return _loggers;
 }
 
-- (NSDateFormatter *)dateFormatter {
-    if (!_dateFormatter) {
-        _dateFormatter = [[NSDateFormatter alloc] init];
-        [_dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
-        [_dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
-    }
-    return _dateFormatter;
-}
-
 + (JVLogManager *)instance {
     static JVLogManager *log = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         log = [[JVLogManager alloc] init];
+        log.dateFormatter = [[NSDateFormatter alloc] init];
+        [log.dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
+        [log.dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
     });
     return log;
 }
@@ -60,57 +54,57 @@
 
 + (void)log:(NSString *)log level:(JVLogLevel)level file:(NSString *)file class:(Class)cls function:(NSString *)function line:(NSInteger)line identifier:(NSString *)identifer
 {
-    for (JVBaseLogger<JVLoggerProtocol> *l in [self instance].loggers) {
+    for (JVBaseLogger<JVLoggerProtocol> *logger in [self instance].loggers) {
 
         BOOL isExcept = NO;
         NSString *filename = [file lastPathComponent];
-        if ([l.filter isExceptForFile:filename]) {
+        if ([logger.filter isExceptForFile:filename]) {
             isExcept = YES;
-        } else if ([l.filter isExceptForClass:cls]) {
+        } else if ([logger.filter isExceptForClass:cls]) {
             isExcept = YES;
-        } else if ([l.filter isExceptForFunction:function]) {
+        } else if ([logger.filter isExceptForFunction:function]) {
             isExcept = YES;
-        } else if ([l.filter isExceptForLine:line]) {
+        } else if ([logger.filter isExceptForLine:line]) {
             isExcept = YES;
-        } else if ([l.filter isExceptForIdentifier:identifer]) {
+        } else if ([logger.filter isExceptForIdentifier:identifer]) {
             isExcept = YES;
         }
         
         if (isExcept) { // if is except, log immediately
-            NSString *extraString = [self extraStringWithExtraInfo:l.logExtraInfo level:level file:filename class:cls function:function line:line identifier:identifer];
+            NSString *extraString = [self extraStringWithExtraInfo:logger.logExtraInfo level:level file:filename class:cls function:function line:line identifier:identifer];
             NSString *logString = nil;
             if (extraString) {
                 logString = [NSString stringWithFormat:@"%@  %@\n", extraString, log];
             } else {
                 logString = [NSString stringWithFormat:@"%@\n", log];;
             }
-            [l outputLog:logString];
+            [logger outputLog:logString];
         } else {
             
-            if (level > l.logLevel) {
+            if (level > logger.showLogLevel) {
                 continue;
             }
             
-            if ([l.filter isFilterForFile:filename]) {
+            if ([logger.filter isFilterForFile:filename]) {
                 continue;
-            } else if ([l.filter isFilterForClass:cls]) {
+            } else if ([logger.filter isFilterForClass:cls]) {
                 continue;
-            } else if ([l.filter isFilterForFunction:function]) {
+            } else if ([logger.filter isFilterForFunction:function]) {
                 continue;
-            } else if ([l.filter isFilterForLine:line]) {
+            } else if ([logger.filter isFilterForLine:line]) {
                 continue;
-            } else if ([l.filter isFilterForIdentifier:identifer]) {
+            } else if ([logger.filter isFilterForIdentifier:identifer]) {
                 continue;
             }
             // no filter, log immediately
-            NSString *extraString = [self extraStringWithExtraInfo:l.logExtraInfo level:level file:filename class:cls function:function line:line identifier:identifer];
+            NSString *extraString = [self extraStringWithExtraInfo:logger.logExtraInfo level:level file:filename class:cls function:function line:line identifier:identifer];
             NSString *logString = nil;
             if (extraString) {
                 logString = [NSString stringWithFormat:@"%@  %@\n", extraString, log];
             } else {
                 logString = [NSString stringWithFormat:@"%@\n", log];;
             }
-            [l outputLog:logString];
+            [logger outputLog:logString];
         }
     }
 }

@@ -13,25 +13,25 @@
 
 #define JVLogId(identifier, format, ...) JVLogDId(identifier, format, ##__VA_ARGS__)
 
-#define JVLogEId(id, format, ...) [JVLogManager log:[NSString stringWithFormat:format, ##__VA_ARGS__] level:JVLogLevelError file:[NSString stringWithFormat:@"%s", __FILE__] class:[self class] function:[NSString stringWithFormat:@"%s", __FUNCTION__] line:__LINE__ identifier:id]
+#define JVLogEId(id, format, ...) [JVLogManager log:[NSString stringWithFormat:format, ##__VA_ARGS__] level:JVLogLevelError file:[NSString stringWithFormat:@"%s", __FILE__] class:[self class] function:[NSString stringWithFormat:@"%s", __PRETTY_FUNCTION__] line:__LINE__ identifier:id]
 
-#define JVLogWId(id, format, ...) [JVLogManager log:[NSString stringWithFormat:format, ##__VA_ARGS__] level:JVLogLevelWarning file:[NSString stringWithFormat:@"%s", __FILE__] class:[self class] function:[NSString stringWithFormat:@"%s", __FUNCTION__] line:__LINE__ identifier:id]
+#define JVLogWId(id, format, ...) [JVLogManager log:[NSString stringWithFormat:format, ##__VA_ARGS__] level:JVLogLevelWarning file:[NSString stringWithFormat:@"%s", __FILE__] class:[self class] function:[NSString stringWithFormat:@"%s", __PRETTY_FUNCTION__] line:__LINE__ identifier:id]
 
-#define JVLogIId(id, format, ...) [JVLogManager log:[NSString stringWithFormat:format, ##__VA_ARGS__] level:JVLogLevelInfo file:[NSString stringWithFormat:@"%s", __FILE__] class:[self class] function:[NSString stringWithFormat:@"%s", __FUNCTION__] line:__LINE__ identifier:id]
+#define JVLogIId(id, format, ...) [JVLogManager log:[NSString stringWithFormat:format, ##__VA_ARGS__] level:JVLogLevelInfo file:[NSString stringWithFormat:@"%s", __FILE__] class:[self class] function:[NSString stringWithFormat:@"%s", __PRETTY_FUNCTION__] line:__LINE__ identifier:id]
 
-#define JVLogDId(id, format, ...) [JVLogManager log:[NSString stringWithFormat:format, ##__VA_ARGS__] level:JVLogLevelDebug file:[NSString stringWithFormat:@"%s", __FILE__] class:[self class] function:[NSString stringWithFormat:@"%s", __FUNCTION__] line:__LINE__ identifier:id]
+#define JVLogDId(id, format, ...) [JVLogManager log:[NSString stringWithFormat:format, ##__VA_ARGS__] level:JVLogLevelDebug file:[NSString stringWithFormat:@"%s", __FILE__] class:[self class] function:[NSString stringWithFormat:@"%s", __PRETTY_FUNCTION__] line:__LINE__ identifier:id]
 
-#define JVLogVId(id, format, ...) [JVLogManager log:[NSString stringWithFormat:format, ##__VA_ARGS__] level:JVLogLevelVerbose file:[NSString stringWithFormat:@"%s", __FILE__] class:[self class] function:[NSString stringWithFormat:@"%s", __FUNCTION__] line:__LINE__ identifier:id]
+#define JVLogVId(id, format, ...) [JVLogManager log:[NSString stringWithFormat:format, ##__VA_ARGS__] level:JVLogLevelVerbose file:[NSString stringWithFormat:@"%s", __FILE__] class:[self class] function:[NSString stringWithFormat:@"%s", __PRETTY_FUNCTION__] line:__LINE__ identifier:id]
 
-#define JVLogE(format, ...) [JVLogManager log:[NSString stringWithFormat:format, ##__VA_ARGS__] level:JVLogLevelError file:[NSString stringWithFormat:@"%s", __FILE__] class:[self class] function:[NSString stringWithFormat:@"%s", __FUNCTION__] line:__LINE__ identifier:nil]
+#define JVLogE(format, ...) [JVLogManager log:[NSString stringWithFormat:format, ##__VA_ARGS__] level:JVLogLevelError file:[NSString stringWithFormat:@"%s", __FILE__] class:[self class] function:[NSString stringWithFormat:@"%s", __PRETTY_FUNCTION__] line:__LINE__ identifier:nil]
 
-#define JVLogW(format, ...) [JVLogManager log:[NSString stringWithFormat:format, ##__VA_ARGS__] level:JVLogLevelWarning file:[NSString stringWithFormat:@"%s", __FILE__] class:[self class] function:[NSString stringWithFormat:@"%s", __FUNCTION__] line:__LINE__ identifier:nil]
+#define JVLogW(format, ...) [JVLogManager log:[NSString stringWithFormat:format, ##__VA_ARGS__] level:JVLogLevelWarning file:[NSString stringWithFormat:@"%s", __FILE__] class:[self class] function:[NSString stringWithFormat:@"%s", __PRETTY_FUNCTION__] line:__LINE__ identifier:nil]
 
-#define JVLogI(format, ...) [JVLogManager log:[NSString stringWithFormat:format, ##__VA_ARGS__] level:JVLogLevelInfo file:[NSString stringWithFormat:@"%s", __FILE__] class:[self class] function:[NSString stringWithFormat:@"%s", __FUNCTION__] line:__LINE__ identifier:nil]
+#define JVLogI(format, ...) [JVLogManager log:[NSString stringWithFormat:format, ##__VA_ARGS__] level:JVLogLevelInfo file:[NSString stringWithFormat:@"%s", __FILE__] class:[self class] function:[NSString stringWithFormat:@"%s", __PRETTY_FUNCTION__] line:__LINE__ identifier:nil]
 
-#define JVLogD(format, ...) [JVLogManager log:[NSString stringWithFormat:format, ##__VA_ARGS__] level:JVLogLevelDebug file:[NSString stringWithFormat:@"%s", __FILE__] class:[self class] function:[NSString stringWithFormat:@"%s", __FUNCTION__] line:__LINE__ identifier:nil]
+#define JVLogD(format, ...) [JVLogManager log:[NSString stringWithFormat:format, ##__VA_ARGS__] level:JVLogLevelDebug file:[NSString stringWithFormat:@"%s", __FILE__] class:[self class] function:[NSString stringWithFormat:@"%s", __PRETTY_FUNCTION__] line:__LINE__ identifier:nil]
 
-#define JVLogV(format, ...) [JVLogManager log:[NSString stringWithFormat:format, ##__VA_ARGS__] level:JVLogLevelVerbose file:[NSString stringWithFormat:@"%s", __FILE__] class:[self class] function:[NSString stringWithFormat:@"%s", __FUNCTION__] line:__LINE__ identifier:nil]
+#define JVLogV(format, ...) [JVLogManager log:[NSString stringWithFormat:format, ##__VA_ARGS__] level:JVLogLevelVerbose file:[NSString stringWithFormat:@"%s", __FILE__] class:[self class] function:[NSString stringWithFormat:@"%s", __PRETTY_FUNCTION__] line:__LINE__ identifier:nil]
 
 typedef NS_ENUM(NSInteger, JVLogLevel) {
     JVLogLevelNone = 0,

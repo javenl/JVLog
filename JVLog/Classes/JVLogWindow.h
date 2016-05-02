@@ -8,13 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface JVShakeLogWindow : UIWindow
+@interface JVLogWindow : UIWindow
 
 @property (strong, nonatomic, readonly) UITextView *textView;
-@property (assign, nonatomic) CGFloat shakeThreshold;
 
-+ (JVShakeLogWindow *)sharedWindow;
-- (void)startListenShake;
-- (void)stopListenShake;
++ (JVLogWindow *)sharedWindow;
+
+- (void)show;
+- (void)hide;
+- (void)toggle;
 
 @end
