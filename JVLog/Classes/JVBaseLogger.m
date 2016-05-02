@@ -19,7 +19,7 @@
     self = [super init];
     if (self) {
         self.logExtraInfo = JVLogExtraInfoDefault;
-        self.logLevel = JVLogLevelDebug;
+        self.showLogLevel = JVLogLevelDebug;
     }
     return self;
 }

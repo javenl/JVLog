@@ -14,6 +14,6 @@
 
 @property (strong, nonatomic) JVLogFilter *filter;
 @property (assign, nonatomic) JVLogExtraInfo logExtraInfo;
-@property (assign, nonatomic) JVLogLevel logLevel;
+@property (assign, nonatomic) JVLogLevel showLogLevel;
 
 @end

@@ -16,4 +16,8 @@
 #import "JVConsoleLogger.h"
 #import "JVLogFilter.h"
 
+#import "JVLogWindow.h"
+#import "JVLogControlWindow.h"
+#import "JVLogShakeListener.h"
+
 #endif /* JVLog_h */
