@@ -28,12 +28,9 @@
         self.btn = [[UIButton alloc] init];
         [self.btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [self.btn setTitle:@"Log" forState:UIControlStateNormal];
-//        self.btn.backgroundColor = [UIColor redColor];
         self.btn.backgroundColor = [UIColor colorWithRed:0x87/256.0 green:0xce/256.0 blue:0xff/256.0 alpha:0.8];
         [self.btn addTarget:self action:@selector(didDragInside:withEvent:) forControlEvents:UIControlEventTouchDragInside];
         [self.btn addTarget:self action:@selector(didTouchCancel:withEvent:) forControlEvents:UIControlEventTouchCancel];
-//        [self.btn addTarget:self action:@selector(didDragEnter:withEvent:) forControlEvents:UIControlEventTouchDragEnter];
-//        [self.btn addTarget:self action:@selector(didDragExit:withEvent:) forControlEvents:UIControlEventTouchDragExit];
         [self.btn addTarget:self action:@selector(didTapInside:withEvent:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.btn];
     }
@@ -64,9 +61,6 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [self show];
     });
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        [self show];
-//    });
 }
 
 - (void)show {
@@ -83,7 +77,6 @@
     if (self.isMoving) {
         UITouch *touch = [[event.allTouches allObjects] firstObject];
         CGPoint point = [touch locationInView:[UIApplication sharedApplication].keyWindow];
-//        CGRect winFrame = [UIApplication sharedApplication].keyWindow.bounds;
         CGRect winFrame = [UIScreen mainScreen].bounds;
         CGPoint targetPoint = point;
         if (targetPoint.x > CGRectGetMaxX(winFrame) / 2.0f) {
@@ -111,11 +104,6 @@
     UITouch *touch = [[event.allTouches allObjects] firstObject];
     CGPoint point = [touch locationInView:[UIApplication sharedApplication].keyWindow];
     self.center = point;
-    
-//    self.center = targetPoint;
-//    NSLog(@"targetPoint %@", NSStringFromCGPoint(targetPoint));
-//    NSLog(@"%@ %@", @([event isKindOfClass:[UITouch class]]), @([event isKindOfClass:[UIEvent class]]));
-//    NSLog(@"didDragInside");
 }
 
 - (void)didTapInside:(id)sender withEvent:(UIEvent *)event {
@@ -139,28 +127,9 @@
             self.center = targetPoint;
         }];
     } else {
-//        NSLog(@"didTap");
         [[JVLogWindow sharedWindow] toggle];
     }
     self.isMoving = NO;
 }
-/*
-#pragma mark - Touch
 
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    NSLog(@"touchesBegan");
-}
-
-- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    NSLog(@"touchesEnded");
-}
-
-- (void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    NSLog(@"touchesCancelled");
-}
-
-- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    NSLog(@"touchesMoved");
-}
-*/
 @end

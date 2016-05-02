@@ -83,18 +83,6 @@
     self.hidden = YES;
 }
 
-#pragma mark - Method
-/*
-- (void)didShake {
-    if (!self.keyWindow) {
-        [self makeKeyAndVisible];
-        [self scrollToTextViewBottom];
-    } else {
-        [self resignKeyWindow];
-        self.hidden = YES;
-    }
-}
-*/
 - (void)scrollToTextViewBottom {
     self.textView.contentOffset = CGPointMake(0, self.textView.contentSize.height - CGRectGetHeight(self.textView.bounds));
 }
