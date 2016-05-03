@@ -10,12 +10,19 @@
 #ifndef JVLog_h
 #define JVLog_h
 
+/**
+ *  Base
+ */
 #import "JVLogMacros.h"
 #import "JVLogManager.h"
 #import "JVFileLogger.h"
 #import "JVConsoleLogger.h"
+#import "JVTextViewLogger.h"
 #import "JVLogFilter.h"
 
+/**
+ *  UI
+ */
 #import "JVLogWindow.h"
 #import "JVLogControlWindow.h"
 #import "JVLogShakeListener.h"
